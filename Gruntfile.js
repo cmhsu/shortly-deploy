@@ -91,6 +91,7 @@ module.exports = function(grunt) {
 
   grunt.registerTask('server-dev', function (target) {
     // Running nodejs in a different process and displaying output on the main console
+    grunt.task.run(['build']);
     var nodemon = grunt.util.spawn({
          cmd: 'grunt',
          grunt: true,
@@ -121,6 +122,9 @@ module.exports = function(grunt) {
   grunt.registerTask('upload', function(n) {
     if(grunt.option('prod')) {
       // add your production server task here
+      
+
+
     } else {
       grunt.task.run([ 'server-dev' ]);
     }
