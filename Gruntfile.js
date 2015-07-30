@@ -76,6 +76,14 @@ module.exports = function(grunt) {
 
     shell: {
       prodServer: {
+          command: [
+              // 'git ignore /public/client/',
+              'git add public/dist/built.min.js',
+              'git add public/dist/style.min.css',
+              'git commit -m "grunt auto commit"',
+              'git push azure master',
+              'azure site browse'
+          ].join('&&')
       }
     },
   });
@@ -122,8 +130,8 @@ module.exports = function(grunt) {
   grunt.registerTask('upload', function(n) {
     if(grunt.option('prod')) {
       // add your production server task here
-      
-
+      grunt.task.run(['build']);
+      grunt.task.run(['shell']);
 
     } else {
       grunt.task.run([ 'server-dev' ]);
