@@ -81,9 +81,6 @@ module.exports = function(grunt) {
       },
       prodServer:{
         command: [
-            // 'git add public/dist/built.min.js',
-            // 'git add public/dist/style.min.css',
-            // 'git commit -m "grunt auto commit"',
             'git push azure master',
             'azure site browse'
         ].join('&&'),
