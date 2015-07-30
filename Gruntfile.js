@@ -4,8 +4,8 @@ module.exports = function(grunt) {
     pkg: grunt.file.readJSON('package.json'),
     concat: {
       dist: {
-        src: ['*.js'],
-        dest: 'public/dist/built.js',
+        src: ['public/client/*.js','!public/lib/*.js'],
+        dest: 'public/dist/built.js'
       }
     },
 
@@ -114,7 +114,8 @@ module.exports = function(grunt) {
   grunt.registerTask('build', [
     'test',
     'concat',
-    'uglify'
+    'uglify',
+    'cssmin'
   ]);
 
   grunt.registerTask('upload', function(n) {
@@ -131,3 +132,18 @@ module.exports = function(grunt) {
 
 
 };
+
+
+/*<%# <script src='/client/app.js'></script> %>
+<%# <script src='/client/link.js'></script> %>
+<%# <script src='/client/links.js'></script> %>
+<%# <script src='/client/linkView.js'></script> %>
+<%# <script src='/client/linksView.js'></script> %>
+<%# <script src='/client/createLinkView.js'></script> %>
+<%# <script src='/client/router.js'></script> %>
+*/
+
+
+
+
+
