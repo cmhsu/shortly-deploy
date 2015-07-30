@@ -26,10 +26,10 @@ var userSchema = mongoose.Schema({
 });
 
 var Url = mongoose.model('Url', urlSchema);
-var Message = mongoose.model('User', userSchema);
+var User = mongoose.model('User', userSchema);
 var mdb = {};
 
 mdb.Url = Url;
-mdb.Message = Message;
+mdb.User = User;
 
 module.exports = mdb;
