@@ -75,17 +75,20 @@ module.exports = function(grunt) {
     },
 
     shell: {
-      prodServer: {
-          command: [
-              // 'git ignore /public/client/',
-              'git add public/dist/built.min.js',
-              'git add public/dist/style.min.css',
-              'git commit -m "grunt auto commit"',
-              'git push azure master',
-              'azure site browse'
-          ].join('&&')
+      options: {
+        stdout: true,
+        stderr: true
+      },
+      prodServer:{
+        command: [
+            // 'git add public/dist/built.min.js',
+            // 'git add public/dist/style.min.css',
+            // 'git commit -m "grunt auto commit"',
+            'git push azure master',
+            'azure site browse'
+        ].join('&&'),
       }
-    },
+    }
   });
 
   grunt.loadNpmTasks('grunt-contrib-uglify');
@@ -99,7 +102,6 @@ module.exports = function(grunt) {
 
   grunt.registerTask('server-dev', function (target) {
     // Running nodejs in a different process and displaying output on the main console
-    grunt.task.run(['build']);
     var nodemon = grunt.util.spawn({
          cmd: 'grunt',
          grunt: true,
@@ -127,10 +129,11 @@ module.exports = function(grunt) {
     'cssmin'
   ]);
 
+
   grunt.registerTask('upload', function(n) {
+    grunt.task.run(['build']);
     if(grunt.option('prod')) {
       // add your production server task here
-      grunt.task.run(['build']);
       grunt.task.run(['shell']);
 
     } else {
