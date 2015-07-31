@@ -80,10 +80,7 @@ module.exports = function(grunt) {
         stderr: true
       },
       prodServer:{
-        command: [
-            'git push azure master',
-            'azure site browse'
-        ].join('&&'),
+        command: 'git push azure master'
       }
     }
   });
